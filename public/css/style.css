@@ -35,7 +35,7 @@ body {
 
 .is-footer {
   color: white;
-  position: relative;
+  position: absolute;
   bottom: 0;
   width: 100%;
   font-weight: bold;

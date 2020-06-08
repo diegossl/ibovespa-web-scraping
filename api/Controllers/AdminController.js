@@ -9,7 +9,7 @@ class AdminController {
       const ibovespaData = await Scraper.getInfo()
       response.render('index', { ibovespaData: ibovespaData })
     } catch (error) {
-      throw new error
+      response.render('error', { message: 'Erro ao coletar dados' })
     }
   }
 

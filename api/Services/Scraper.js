@@ -17,28 +17,22 @@ class Scraper {
     let day_min = $('.line-info > .minimo > p').text()
     let day_max = $('.line-info > .maximo > p').text()
 
-    var ibovespa_high = [];
-    $('table#high > tbody > tr').map((i, el) => {
-      let data = $(el).text()
-      ibovespa_high.push({ data })
-    }).get()
-    console.log(ibovespa_high)
+    // var ibovespa_high = [];
+    // $('table#high > tbody > tr').map((i, el) => {
+    //   let data = $(el).text()
+    //   ibovespa_high.push({ data })
+    // }).get()
+    // console.log(ibovespa_high)
 
-    let data = {
+    let ibovespaInfo = {
       update_date: update_date,
       points: points,
       variation: variation,
       day_min: day_min,
       day_max: day_max
     }
-
-    return data
+    return ibovespaInfo
   }
-
-  _filter (data) {
-    return data.trim()
-  }
-
 }
 
 module.exports = Scraper
