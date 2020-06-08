@@ -8,15 +8,16 @@ const URL = "https://www.infomoney.com.br/cotacoes/ibovespa/"
 class Scraper {
 
   static async getInfo () {
-    var res = await Axios.get(URL)
-    var $ = Cheerio.load(res.data)
-    var points = $('.line-info > .value > p').text()
-    var variation = $('.line-info > .percentage > p').text()
-    var day_min = $('.line-info > .minimo > p').text()
-    var day_max = $('.line-info > .maximo > p').text()
-    var description = $('div.description').text()
+    const res = await Axios.get(URL)
+    const $ = Cheerio.load(res.data)
+    
+    const points = $('.line-info > .value > p').text()
+    const variation = $('.line-info > .percentage > p').text()
+    const day_min = $('.line-info > .minimo > p').text()
+    const day_max = $('.line-info > .maximo > p').text()
+    const description = $('div.description').text()
 
-    var data = {
+    const data = {
       description: description,
       points: points,
       variation: variation,
