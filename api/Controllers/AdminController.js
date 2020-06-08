@@ -4,12 +4,12 @@ const Scraper = require('../Services/Scraper')
 
 class AdminController {
 
-  async index (request, response) {
+  async index (response) {
     try {
-      const points = await Scraper.getInfo()
-      response.render('index', { title: points })
+      const ibovespaData = await Scraper.getInfo()
+      response.render('index', { ibovespaData: ibovespaData })
     } catch (error) {
-      console.log(error)
+      throw new error
     }
   }
 

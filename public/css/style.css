@@ -1,8 +1,22 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500&family=Poppins:wght@400;500;600&display=swap");
+
+@media (max-width: 978px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  button,
+  body {
+    font-family: "Poppins", sans-serif !important;
+  }
 }
 
-a {
-  color: #00B7FF;
+.is-footer {
+  background-color: gainsboro;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-weight: bold;
 }
