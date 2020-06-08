@@ -17,6 +17,13 @@ class Scraper {
     let day_min = $('.line-info > .minimo > p').text()
     let day_max = $('.line-info > .maximo > p').text()
 
+    var ibovespa_high = [];
+    $('table#high > tbody > tr').map((i, el) => {
+      let data = $(el).text()
+      ibovespa_high.push({ data })
+    }).get()
+    console.log(ibovespa_high)
+
     let data = {
       update_date: update_date,
       points: points,
@@ -26,6 +33,10 @@ class Scraper {
     }
 
     return data
+  }
+
+  _filter (data) {
+    return data.trim()
   }
 
 }
