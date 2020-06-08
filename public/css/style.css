@@ -1,21 +1,41 @@
 @import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500&family=Poppins:wght@400;500;600&display=swap");
 
-@media (max-width: 978px) {
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  button,
-  body {
-    font-family: "Poppins", sans-serif !important;
+button,
+body {
+  font-family: "Poppins", sans-serif !important;
+}
+
+@media(min-width: 576px){
+  .section-one {
+    height: 500px;
   }
 }
 
+.color-header {
+  background-color: #212529;
+}
+
+.logo {
+  color: white;
+}
+
+.color-icon {
+  color: green;
+}
+
+.color-title {
+  color: white;
+}
+
 .is-footer {
-  background-color: gainsboro;
-  position: absolute;
+  color: white;
+  position: relative;
   bottom: 0;
   width: 100%;
   font-weight: bold;
