@@ -3,9 +3,10 @@
   <%- include('components/head'); %>
   <body>
     <%- include('components/header'); %>
+  
     <div class="container-fluid">
-      <div class="row section-one">
-        <div class="col">
+      <div class="row section-one align-items-center justify-content-center">
+        <div class="col-sm-10">
           <%- include('components/card', {title: ibovespaData.title, points:
           ibovespaData.points, variation: ibovespaData.variation, day_min:
           ibovespaData.day_min, day_max: ibovespaData.day_max, update_date:
@@ -13,8 +14,8 @@
         </div>
       </div>
 
-      <div class="row mt-5">
-        <div class="col">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-sm-10">
           <h1 class="text-center">Altas da IBOVESPA</h1>
           <table class="table mt-4 text-center">
             <thead class="thead-dark">
@@ -32,7 +33,11 @@
               include('components/table_line', {item: item}); %> <% }); %>
             </tbody>
           </table>
+        </div>
+      </div>
 
+      <div class="row align-items-center justify-content-center">
+        <div class="col-sm-10">
           <h1 class="text-center mt-5">Baixas da IBOVESPA</h1>
           <table class="table mt-4 text-center">
             <thead class="thead-dark">
@@ -53,7 +58,7 @@
         </div>
       </div>
     </div>
-
+    
     <%- include('components/footer'); %>
   </body>
 </html>
