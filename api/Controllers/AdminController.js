@@ -13,14 +13,15 @@ class AdminController {
     }
   }
 
-  // async createCompany (response) {
-  //   try {
-  //     const companyData = await Scraper.getCompanyInfo()
-  //     response.render('company', { companyData: companyData })
-  //   } catch (error) {
-  //     response.render('error', { message: 'Erro ao coletar dados', error: error })
-  //   }
-  // }
+  async createCompany (request, response) {
+    try {
+      const companyTitle = request.params.title
+      const companyData = await Scraper.getCompanyInfo(companyTitle)
+      response.render('company', { companyData: companyData })
+    } catch (error) {
+      response.render('error', { message: 'Erro ao coletar dados', error: error })
+    }
+  }
 
 }
 

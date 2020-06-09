@@ -8,8 +8,8 @@ router.get('/', function(request, response) {
   AdminController.index(response)
 })
 
-router.get('/empresa', function(request, response) {
-  AdminController.createCompany(response)
+router.get('/empresa/:title', function(request, response) {
+  AdminController.createCompany(request, response)
 })
 
 

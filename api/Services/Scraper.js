@@ -9,96 +9,76 @@ const URL = "https://www.infomoney.com.br/cotacoes/ibovespa/"
 class Scraper {
 
   static async getInfo () {
-    let res = await Axios.get(URL)
-    let $ = Cheerio.load(res.data)
-
-    let mainData = this._mainData($)
+    var res = await Axios.get(URL)
+    var $ = Cheerio.load(res.data)
+    var primaryData = this._primaryData($)
     var companiesLinks = []
     var ibovespa_high = []
     var ibovespa_low = []
 
     $('table#high > tbody > tr').map((i, el) => {
-      let link = $(el).find($("td:nth-child(1) > a")).attr('href')
-      companiesLinks.push({ link: link })
-
-      let active = $(el).find($("td:nth-child(1)")).text()
-      let last = $(el).find($("td:nth-child(2)")).text()
-      let day_variation = $(el).find($("td:nth-child(3)")).text()
-      let min_value = $(el).find($("td:nth-child(4)")).text()
-      let max_value = $(el).find($("td:nth-child(5)")).text()
-      let date = $(el).find($("td:nth-child(6)")).text()
-
+      let secondaryData = this._secondaryData($, el)
+      companiesLinks.push({ companyTitle: secondaryData.active, link: secondaryData.link })
       ibovespa_high.push({ 
-        active: active,
-        last: last,
-        day_variation: day_variation,
-        min_value: min_value,
-        max_value: max_value,
-        date: date
+        active: secondaryData.active,
+        last: secondaryData.last,
+        day_variation: secondaryData.day_variation,
+        min_value: secondaryData.min_value,
+        max_value: secondaryData.max_value,
+        date: secondaryData.date
        })
     }).get()  
 
     $('table#low > tbody > tr').map((i, el) => {
-      let link = $(el).find($("td:nth-child(1) > a")).attr('href')
-      companiesLinks.push({ link: link })
-
-      let active = $(el).find($("td:nth-child(1)")).text()
-      let last = $(el).find($("td:nth-child(2)")).text()
-      let day_variation = $(el).find($("td:nth-child(3)")).text()
-      let min_value = $(el).find($("td:nth-child(4)")).text()
-      let max_value = $(el).find($("td:nth-child(5)")).text()
-      let date = $(el).find($("td:nth-child(6)")).text()
-
+      let secondaryData = this._secondaryData($, el)
+      companiesLinks.push({ companyTitle: secondaryData.active, link: secondaryData.link })
       ibovespa_low.push({ 
-        active: active,
-        last: last,
-        day_variation: day_variation,
-        min_value: min_value,
-        max_value: max_value,
-        date: date
+        active: secondaryData.active,
+        last: secondaryData.last,
+        day_variation: secondaryData.day_variation,
+        min_value: secondaryData.min_value,
+        max_value: secondaryData.max_value,
+        date: secondaryData.date
        })
     }).get()
 
-    //fs.writeFile('database/companiesLinks.json', JSON.stringify(companiesLinks), function(){})
+    fs.writeFile('database/companiesLinks.json', JSON.stringify(companiesLinks), function(){})
 
-    let ibovespaInfo = {
-      title: mainData.title,
-      update_date: mainData.update_date,
-      points: mainData.points,
-      variation: mainData.variation,
-      day_min: mainData.day_min,
-      day_max: mainData.day_max,
+    return {
+      title: primaryData.title,
+      update_date: primaryData.update_date,
+      points: primaryData.points,
+      variation: primaryData.variation,
+      day_min: primaryData.day_min,
+      day_max: primaryData.day_max,
       ibovespa_high: ibovespa_high,
       ibovespa_low: ibovespa_low
     }
-    return ibovespaInfo
   }
 
-  // static async getCompanyInfo () {
-  //   const companiesLinks = JSON.parse(fs.readFileSync('database/companiesLinks.json', 'utf-8'))
-  //   var companiesData = []
+  static async getCompanyInfo (companyTitle) {
+    let companiesLinks = JSON.parse(fs.readFileSync('database/companiesLinks.json', 'utf-8'))
+    let company = companiesLinks.filter((item) => {
+      if (item.companyTitle == companyTitle) {
+        return item
+      }
+    })
     
-  //   companiesLinks.map(async (item) => {
-  //     try {
-  //       let res = await Axios.get(item.link)
-  //       let $ = Cheerio.load(res.data)
-  //       let mainData = this._mainData($)
-  //       companiesData.push({ 
-  //         title: mainData.title,
-  //         update_date: mainData.update_date,
-  //         points: mainData.points,
-  //         variation: mainData.variation,
-  //         day_min: mainData.day_min,
-  //         day_max: mainData.day_max
-  //        })
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   })
-  //   return companiesLinks
-  // }
+    let res = await Axios.get(company[0].link)
+    let $ = Cheerio.load(res.data)
+    let primaryData = this._primaryData($)
 
-  static _mainData ($) {
+    return { 
+      title: primaryData.title,
+      update_date: primaryData.update_date,
+      points: primaryData.points,
+      variation: primaryData.variation,
+      day_min: primaryData.day_min,
+      day_max: primaryData.day_max
+    }
+  }
+
+  static _primaryData ($) {
     return {
       title: $('.quotes-header-info > .center > h1').text(),
       update_date: $('.date-update > span').text(),
@@ -106,6 +86,18 @@ class Scraper {
       variation: $('.line-info > .percentage > p').text(),
       day_min: $('.line-info > .minimo > p').text(),
       day_max: $('.line-info > .maximo > p').text()
+    }
+  }
+
+  static _secondaryData ($, el) {
+    return {
+      link: $(el).find($("td:nth-child(1) > a")).attr('href'),
+      active: $(el).find($("td:nth-child(1)")).text(),
+      last: $(el).find($("td:nth-child(2)")).text(),
+      day_variation: $(el).find($("td:nth-child(3)")).text(),
+      min_value: $(el).find($("td:nth-child(4)")).text(),
+      max_value: $(el).find($("td:nth-child(5)")).text(),
+      date: $(el).find($("td:nth-child(6)")).text()
     }
   }
 }
