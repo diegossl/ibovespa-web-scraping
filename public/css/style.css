@@ -17,6 +17,10 @@ body {
   }
 }
 
+a.no-underline:link{
+  text-decoration: none;
+}
+
 .color-header {
   background-color: #212529;
 }
@@ -35,7 +39,7 @@ body {
 
 .is-footer {
   color: white;
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
   font-weight: bold;

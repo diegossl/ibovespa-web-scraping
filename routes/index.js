@@ -8,4 +8,9 @@ router.get('/', function(request, response) {
   AdminController.index(response)
 })
 
+router.get('/empresa', function(request, response) {
+  AdminController.createCompany(response)
+})
+
+
 module.exports = router

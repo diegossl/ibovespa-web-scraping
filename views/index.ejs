@@ -1,155 +1,59 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Ibovespa</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </head>
+  <%- include('components/head'); %>
   <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <div class="navbar-brand">
-          <span class="align-middle logo"><i class="fas fa-file-invoice-dollar fa-2x"></i></span>
-          <span class="align-middle h2 ml-2 logo">Ibovespa</span>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <a class="btn btn-success color-title mr-5" href="/">ATUALIZAR</a>
-        </div>
-      </nav>
-    </header>  
-
+    <%- include('components/header'); %>
     <div class="container-fluid">
       <div class="row section-one">
         <div class="col">
-          <div class="card mt-3">
-            <div class="card-header color-title font-weight-bold h2 text-center color-header">
-              Índice Bovespa IBOV
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h6 class="card-title text-center">
-                    RESUMO DOS DADOS
-                  </h6>
-                  </div>
-              </div>
-              <div class="row mt-3 text-center">
-                <div class="col">
-                  <span>PONTOS</span>
-                  <div class="card-text">
-                    <span class="h1"><%=ibovespaData.points%></span>
-                  </div>
-                </div>
-                <div class="col">
-                  <span>VARIAÇÃO (DIA)</span>
-                  <div class="card-text">
-                    <span class="h1 color-icon"><%=ibovespaData.variation%></span>
-                  </div>
-                </div>
-                <div class="col">
-                  <span>MÍNIMO (DIA)</span>
-                  <div class="card-text">
-                    <span class="h1"><%=ibovespaData.day_min%></span>
-                  </div>
-                </div>
-                <div class="col">
-                  <span>MÁXIMO (DIA)</span>
-                  <div class="card-text">
-                    <span class="h1"><%=ibovespaData.day_max%></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer text-muted text-center">
-              <i class="fas fa-info-circle"></i>
-              <span><%=ibovespaData.update_date%></span>
-            </div>
-          </div>
+          <%- include('components/card', {title: ibovespaData.title, points:
+          ibovespaData.points, variation: ibovespaData.variation, day_min:
+          ibovespaData.day_min, day_max: ibovespaData.day_max, update_date:
+          ibovespaData.update_date});%>
         </div>
       </div>
 
-      <!-- <div class="row mt-5">
+      <div class="row mt-5">
         <div class="col">
-          <h1 class="text-center">Altas e baixas IBOVESPA</h1>
-          <table class="table mt-4">
+          <h1 class="text-center">Altas da IBOVESPA</h1>
+          <table class="table mt-4 text-center">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">ATIVO</th>
+                <th scope="col">ÚLTIMO (R$)</th>
+                <th scope="col">VAR. DIA (%)</th>
+                <th scope="col">VAL. MIN (R$)</th>
+                <th scope="col">VAL. MAX (R$)</th>
+                <th scope="col">DATA</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+              <% ibovespaData.ibovespa_high.forEach(function(item){ %> <%-
+              include('components/table_line', {item: item}); %> <% }); %>
             </tbody>
           </table>
-          
-          <table class="table">
-            <thead class="thead-light">
+
+          <h1 class="text-center mt-5">Baixas da IBOVESPA</h1>
+          <table class="table mt-4 text-center">
+            <thead class="thead-dark">
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">ATIVO</th>
+                <th scope="col">ÚLTIMO (R$)</th>
+                <th scope="col">VAR. DIA (%)</th>
+                <th scope="col">VAL. MIN (R$)</th>
+                <th scope="col">VAL. MAX (R$)</th>
+                <th scope="col">DATA</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+              <% ibovespaData.ibovespa_low.forEach(function(item){ %> <%-
+              include('components/table_line', {item: item}); %> <% }); %>
             </tbody>
           </table>
         </div>
-      </div> -->
+      </div>
     </div>
 
-    <footer class="footer is-footer bg-secondary">
-      <div class="footer-copyright text-center py-3">
-        © 2020 Copyright: Diego Lourenço.
-      </div>
-    </footer>
+    <%- include('components/footer'); %>
   </body>
-</html> 
+</html>

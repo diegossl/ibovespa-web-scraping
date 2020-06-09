@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <%- include('components/head'); %>
+  <body>
+    <%- include('components/header'); %>
+    <div class="container-fluid">
+      <div class="row section-one">
+        <div class="col">
+          <%- include('components/card', {title: companyData.title, points:
+          companyData.points, variation: companyData.variation, day_min:
+          companyData.day_min, day_max: companyData.day_max, update_date:
+          companyData.update_date});%>
+        </div>
+      </div>
+    </div>
+
+    <%- include('components/footer'); %>
+  </body>
+</html>
