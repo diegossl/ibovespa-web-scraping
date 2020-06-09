@@ -7,9 +7,10 @@ class AdminController {
   async index (response) {
     try {
       const ibovespaData = await Scraper.getInfo()
-      response.render('index', { ibovespaData: ibovespaData })
+      console.log(ibovespaData)
+      //response.render('index', { ibovespaData: ibovespaData })
     } catch (error) {
-      response.render('error', { message: 'Erro ao coletar dados' })
+      response.render('error', { message: 'Erro ao coletar dados', error: error })
     }
   }
 
