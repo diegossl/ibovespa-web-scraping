@@ -16,11 +16,11 @@ Finalmente, digite o seguinte comando no terminal para iniciar o servidor:
 ```bash
 npm start
 ```
-Agora o sistema está pronto para ser utilizado através da rota local:
+Agora o sistema está pronto para ser utilizado através da rota:
 
 [http://localhost:3333](http://localhost:3333)
 
-### Features
+## Features
 
 O projeto possui basicamente uma feature que é a de coletar os dados do Ibovespa das empreas que estão na B3.
 
