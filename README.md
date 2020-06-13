@@ -24,6 +24,6 @@ Agora o sistema está pronto para ser utilizado através da rota:
 
 O projeto possui basicamente uma feature que é a de coletar os dados do Ibovespa das empreas que estão na B3.
 
-### Licença
+## Licença
 
 Não se aplica.
