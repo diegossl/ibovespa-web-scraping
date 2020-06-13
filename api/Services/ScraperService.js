@@ -1,12 +1,13 @@
 'use strict'
 
+const CacheService = require('./CacheService')
 const Cheerio = require('cheerio')
 const Axios = require('axios')
 const fs = require("fs")
 
 const URL = "https://www.infomoney.com.br/cotacoes/ibovespa/"
 
-class Scraper {
+class ScraperService {
 
   static async getInfo () {
     var res = await Axios.get(URL)
@@ -42,7 +43,7 @@ class Scraper {
        })
     }).get()
 
-    fs.writeFile('database/companiesLinks.json', JSON.stringify(companiesLinks), function(){})
+    await CacheService.set('links', JSON.stringify(companiesLinks))
 
     return {
       title: primaryData.title,
@@ -57,7 +58,7 @@ class Scraper {
   }
 
   static async getCompanyInfo (companyTitle) {
-    let companiesLinks = JSON.parse(fs.readFileSync('database/companiesLinks.json', 'utf-8'))
+    let companiesLinks = JSON.parse((await CacheService.get('links')).value)
     let company = companiesLinks.filter((item) => {
       if (item.companyTitle == companyTitle) {
         return item
@@ -102,4 +103,4 @@ class Scraper {
   }
 }
 
-module.exports = Scraper
+module.exports = ScraperService
