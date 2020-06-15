@@ -1,4 +1,4 @@
-# Web Scraper do Ibovespa
+# Coleta de dados do Ibovespa
 
 O Ibovespa é o principal indicador de desempenho das ações negociadas na B3. Ele reúne as empresas mais importantes do mercado de capitais brasileiro.
 O índice é calculado em tempo real. Considera-se instantaneamente os preços de todos os negócios efetuados no mercado à vista com as ações componentes de sua carteira (lote padrão).
