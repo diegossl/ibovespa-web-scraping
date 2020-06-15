@@ -26,4 +26,4 @@ O projeto possui basicamente uma feature que é a de coletar os dados do Ibovesp
 
 ## Licença
 
-Não se aplica.
+MIT
