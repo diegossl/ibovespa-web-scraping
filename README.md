@@ -1,29 +1,29 @@
-# Coletor de dados do Ibovespa
+# IBOVESPA data collector
 
-O Ibovespa é o principal indicador de desempenho das ações negociadas na B3. Ele reúne as empresas mais importantes do mercado de capitais brasileiro.
-O índice é calculado em tempo real. Considera-se instantaneamente os preços de todos os negócios efetuados no mercado à vista com as ações componentes de sua carteira (lote padrão).
+The Ibovespa is the main performance indicator for shares traded in B3. It brings together the most important companies in the Brazilian capital market.
+The index is calculated in real time. The prices of all trades carried out in the spot market with the shares comprising its portfolio (standard lot) are instantly considered.
 
 ## Setup
 
-Para executar o projeto, será necessário instalar as dependências digitando o seguinte comando no terminal:
+To execute the project, it will be necessary to install the dependencies by typing the following command in the terminal:
 
 ```bash
 npm install
 ```
 
-Finalmente, digite o seguinte comando no terminal para iniciar o servidor:
+Finally, type the following command in the terminal to start the server:
 
 ```bash
 npm start
 ```
-Agora o sistema está pronto para ser utilizado através da rota:
+The system is now ready to be used via the route:
 
 [http://localhost:3333](http://localhost:3333)
 
 ## Features
 
-O projeto possui basicamente uma feature que é a de coletar os dados do Ibovespa das empreas que estão na B3.
+The project basically has a feature that is to collect Ibovespa data from companies that are in B3.
 
-## Licença
+## License
 
 MIT
