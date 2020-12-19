@@ -3,7 +3,6 @@
 const CacheService = require('./CacheService')
 const Cheerio = require('cheerio')
 const Axios = require('axios')
-const fs = require("fs")
 
 const URL = "https://www.infomoney.com.br/cotacoes/ibovespa/"
 
