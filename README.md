@@ -18,7 +18,7 @@ npm start
 ```
 The system is now ready to be used via the route:
 
-[http://localhost:3333](http://localhost:3000)
+[http://localhost:3000](http://localhost:3000)
 
 ## Features
 
